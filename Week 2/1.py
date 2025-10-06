@@ -1,17 +1,13 @@
-#Задание 1.
-#Напишите программу, которая бы определяла изограммы – строки 
-#без повторяющихся букв.
-
-my_str = input()
-isogramm = True
-
-for i in range(len(my_str) - 1):
-    for j in range(i + 1, len(my_str) - 1):
-        if my_str[i] == my_str[j]:
-            isogramm = False
-            break
-
-if isogramm: 
-    print("Изограмма") 
-else:
-    print("Не изограмма")
+#Задание неделя 2 (08.09-14.09)
+#1
+import math
+a = int(input())
+b = int(input())
+c = int(input())
+p = (a + b + c)/2
+print(p)
+S_tre = math.sqrt( (p * (p - a) * (p - b) * (p - c)) )
+R_tre = ((a*b*c)/(4*S_tre))
+print(R_tre)
+S_okr = math.pi * R_tre**2
+print("Формула Герона", S_tre, "площадь описанной окружности", S_okr )
