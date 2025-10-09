@@ -14,7 +14,7 @@ with open("BindingEnergy1.txt", "r", encoding="UTF-8") as r_file:
     for row in r_file:
         string = row.split()
         control, m1, m2, m3, m4, m5, m6 = map(float, string)
-        sum_kvad_otkl = round(((float(string[1]) - float(string[0]))**2)  + ((float(string[2]) - float(string[0]))**2) + ((float(string[3]) - float(string[0]))**2) + ((float(string[4]) - float(string[0]))**2)+ ((float(string[5]) - float(string[0]))**2)+ ((float(string[6]) - float(string[0]))**2))
+        sum_kvad_otkl = round(((float(string[1]) - float(string[0]))**2)  + ((float(string[2]) - float(string[0]))**2) + ((float(string[3]) - float(string[0]))**2) + ((float(string[4]) - float(string[0]))**2)+ ((float(string[5]) - float(string[0]))**2)+ ((float(string[6]) - float(string[0]))**2), 2)
         count.append(sum_kvad_otkl)
         if sum_kvad_otkl >= max1:
             max1 = sum_kvad_otkl 
@@ -35,10 +35,27 @@ with open("BindingEnergy1.txt", "r", encoding="UTF-8") as r_file:
                         if sum_kvad_otkl >= max5:
                             max5 = sum_kvad_otkl 
                             max_string5.append(string)
-print(count)                                            
-print(max1, max2, max3, max4, max5)
 
-# print(max_string1)
+    mode = {}
+    for i in count:
+        if i in mode:
+            mode[i] += 1
+        else:
+            mode[i] = 1
+
+    max_count = 0
+    moda_value = 0
+
+    for key in mode:
+        if mode[key] > max_count:
+            max_count = mode[key]
+            moda_value = key
+
+print(count)
+print(max1, max2, max3, max4, max5)
+print(moda_value)
+
+#print(max_string1)
 # print(max_string2)
 # print(max_string3)
 # print(max_string4)

@@ -1,4 +1,6 @@
 import os
+from imaplib import Continuation
+
 
 def reading(file_name):
     assert os.path.exists(file_name), f"Файл {file_name} не найден!"
@@ -7,18 +9,35 @@ def reading(file_name):
 
     with open(file_name, "r", encoding="UTF-8") as r_file:
         # r_file = r_file.read()
-        flag = False
+        flag_features = False
+        flag_cds = False
+
+        flag_features = False
+        flag_cds = False
+
         for row in r_file:
             if row.startswith("FEATURES"):
-                flag = True
+                flag_features = True
                 continue
+
             if row.startswith("ORIGIN"):
-                flag = False
+                flag_features = False
+                flag_cds = False
                 break
-            if flag:
-                features.append(row)
-                if "CDS" in row or "/translation" in row:
+
+            if row.strip().startswith("CDS"):
+                flag_cds = True
+                cds.append(row)
+                continue
+
+            if flag_cds:
+                if row[:5].strip() != "" and not row.startswith("                     /"):
+                    flag_cds = False
+                else:
                     cds.append(row)
+
+            if flag_features:
+                features.append(row)
     return features, cds
  
 
@@ -30,19 +49,15 @@ def writing(features, cds):
         f2.writelines(cds)
     # return features, cds
 
-file_name = input("Введите имя файла: ")
-feat1 = input("Введите куда записать feature: ")
-cd1 = input("Введите куда записать cds: ")
 # /Users/fixed/PycharmProjects/BioinfAlgos/Week_5/parsing_genbank/sequence.gb
-
+file_name = input("Введите имя файла: ")
 features, cds = reading(file_name)
 writing(features, cds)
 print(features)
 print(cds)
+
 # print(open("./parsing_genbank/features.txt", encoding="utf-8").read())
 # print(open("./parsing_genbank/cds.txt", encoding="utf-8").read())
-features_path = "./parsing_genbank/features.txt"
-cds_path = "./parsing_genbank/cds.txt"
 
 # with open(features_path, "r", encoding="utf-8") as f:
 #     lines = f.readlines()

@@ -1,2 +1,8 @@
      CDS             1..>413
+                     /gene="X"
+                     /codon_start=1
+                     /product="HBx"
+                     /protein_id="CCH57386.1"
                      /translation="MAARLYCQLDSSRDVLCLRPVGAESRGRPLARPLGAVSSPSPSA
+                     VPSDHGAHLSLRGLPVCAFSSXRSVCTSLHLCTLHGDHRERPSXPAQGLTKEDSWTLS
+                     NVNDRPRGLLQRLCDKRLGGVGGGDKVXXLCIRRL"

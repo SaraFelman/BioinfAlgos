@@ -6,7 +6,6 @@
                      /geo_loc_name="India"
      gene            1..>413
                      /gene="X"
-     CDS             1..>413
                      /gene="X"
                      /codon_start=1
                      /product="HBx"
