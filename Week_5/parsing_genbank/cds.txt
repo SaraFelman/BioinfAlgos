@@ -1,0 +1,2 @@
+     CDS             1..>413
+                     /translation="MAARLYCQLDSSRDVLCLRPVGAESRGRPLARPLGAVSSPSPSA

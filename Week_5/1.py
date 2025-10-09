@@ -37,6 +37,7 @@ with open("BindingEnergy1.txt", "r", encoding="UTF-8") as r_file:
                             max_string5.append(string)
 print(count)                                            
 print(max1, max2, max3, max4, max5)
+
 # print(max_string1)
 # print(max_string2)
 # print(max_string3)

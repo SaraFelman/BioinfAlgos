@@ -1,0 +1,16 @@
+     source          1..413
+                     /organism="Hepatitis B virus"
+                     /mol_type="genomic DNA"
+                     /isolate="11851"
+                     /db_xref="taxon:10407"
+                     /geo_loc_name="India"
+     gene            1..>413
+                     /gene="X"
+     CDS             1..>413
+                     /gene="X"
+                     /codon_start=1
+                     /product="HBx"
+                     /protein_id="CCH57386.1"
+                     /translation="MAARLYCQLDSSRDVLCLRPVGAESRGRPLARPLGAVSSPSPSA
+                     VPSDHGAHLSLRGLPVCAFSSXRSVCTSLHLCTLHGDHRERPSXPAQGLTKEDSWTLS
+                     NVNDRPRGLLQRLCDKRLGGVGGGDKVXXLCIRRL"
