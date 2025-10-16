@@ -1,0 +1,5 @@
+https://www.geeksforgeeks.org/write-regular-expressions/
+https://medium.com/@victoriousjvictor/understanding-regular-expressions-regex-e1c048f5aa6c
+https://www.w3resource.com/python-exercises/re/
+https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-regex
+https://www.w3resource.com/python-exercises/re/
