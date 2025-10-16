@@ -13,35 +13,44 @@ import re
 
 with open("text_for_regex_training.txt", "r", encoding="UTF-8") as r_file:
     s = r_file.read()
-    # print(s)
+    copy_path = "fixed_text.txt"    # print(s)
 
     # "Творчество Gemini 1.5 Flash 002"
-    print(re.sub(r'(\w+)(\s)(\d.\d)', r'\3\2\1', "Творчество Gemini 1.5 Flash 002"))
+    s = re.sub(r'(\w+) (\d(.\d)*)', r'\2 \1', s)
+    print(s.split('\n')[0])
 
-    match2 = re.findall(r'^[МMCС].*\.$', s, re.MULTILINE) # 2)
+    # print(re.sub(r'(\w+)(\s)(\d.\d)', r'\3\2\1', "Творчество Gemini 1.5 Flash 002"))
+
+    match2 = re.findall(r'^[МMCС].*\.$', s, re.MULTILINE) # 2) ре.мультилайн для проверки каждой строки файла отдельно
     print(match2[0] if match2 else "Не найден")
 
+    # 3) Находила и записывала все ссылки в отдельный файл.
     match3 = re.findall(r'https://[\w.\\@/-]+', s)  # 3)3
     if match3:
-        with open(f'./emails.txt', 'w') as out_file:
+        with open(f'./emails.txt', 'w', encoding='UTF-8') as out_file:
             out_file.write('\n'.join(match3))
             print("\n3) Ссылки сохранены в ./emails.txt")
     else:
         print("\n3) Ссылки не найдены")
-    # (https://
 
+    # 4) Находила все слова, содержащие английские и русские буквы (примеры: ‘email-адресов’, ‘реgулярным’).
     match4 = re.findall(r'\b(?=[A-Za-zА-Яа-я-]*[A-Za-z])(?=[A-Za-zА-Яа-я-]*[А-Яа-я])[A-Za-zА-Яа-я-]+\b', s)
-    print(match4[0] if match4 else "хз") # 4)
+    print(match4) # 4)
 
     # 5) Добавляла недостающий пробел между знаком препинания и словом.
-    s = re.sub(r'([.,;!?])([^\s])', r'\1 \2', s) # 5)
-    # print(s)
+    # urls = re.findall(r'https://[\w./@-]+', s)
+    # if s != urls:
+    #     s = re.sub(r'([:?.,!])([A-Za-zА-Яа-я])', r'\1 \2', s)
+    s = re.sub(r'(?<!https)([:?.,!])([A-Za-zА-Яа-я])', r'\1 \2', s)
+
 
     # 6) Меняла букву на заглавную у первого слова в новом предложении.
+    # s = re.sub(r'(^|[.!?]\s+)([а-яa-z])', lambda m: m.group(1) + m.group(2).upper(), s)
     s = re.sub(r'(^|[.!?]\s+)([а-яa-z])', lambda m: m.group(1) + m.group(2).upper(), s)
+    # r'([A-Za-zА-Яа-я])(.*?[\.!\?])'
 
-with open("text_for_regex_training_fixed.txt", "w", encoding="utf-8") as out:
-    out.write(s)
+    with open(copy_path, "w", encoding="UTF-8") as w_file:
+        w_file.write(s)
 
 
 
