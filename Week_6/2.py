@@ -41,7 +41,9 @@ with open("text_for_regex_training.txt", "r", encoding="UTF-8") as r_file:
     # urls = re.findall(r'https://[\w./@-]+', s)
     # if s != urls:
     #     s = re.sub(r'([:?.,!])([A-Za-zА-Яа-я])', r'\1 \2', s)
-    s = re.sub(r'(?<!https)([:?.,!])([A-Za-zА-Яа-я])', r'\1 \2', s)
+    # 5
+    # match5 = re.sub(r'([?.,!-])([A-Za-zА-Яа-я])', r'\1 \2', s)
+    s = re.sub(r'([\.!\?\:])([А-Яа-я])', r'\1 \2', s)
 
 
     # 6) Меняла букву на заглавную у первого слова в новом предложении.
