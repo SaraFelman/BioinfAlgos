@@ -128,6 +128,9 @@ hospital_type_percent = (hospital_type/vaccinated * 100).round(2).fillna(0)
 
 # Диаграммы размаха количества дней от факта вакцинации до проявления
 # побочных эффектов для пяти типов вакцин (пункт 6)
+# центр медиана, края ящика 1 и 3 квантили, ящик - межквартальный размах,
+# усы ящика по 1,5 медкварталь размах в каждую сторону
+
 merged.dropna(subset=['VAX_DATE', 'ONSET_DATE'], inplace=True)
 merged['VAX_DATE'] = pd.to_datetime(merged['VAX_DATE'])
 merged["ONSET_DATE"] = pd.to_datetime(merged['ONSET_DATE'])
@@ -181,7 +184,7 @@ covid = merged3[merged3['VAX_TYPE'] == 'COVID19']
 symp1 = covid[covid['SYMPTOM1'] != "No adverse event"]
 min_pobochki = symp1['VAX_NAME'].value_counts()
 vaccinated_covid = covid['VAX_NAME'].value_counts()
-print(min_pobochki)
+# print(min_pobochki)
 min_pobochki_percent = (min_pobochki/vaccinated_covid * 100).round(2).fillna(0)
 print(min_pobochki_percent.sort_values(ascending=True))
 
